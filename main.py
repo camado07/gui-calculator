@@ -1,37 +1,44 @@
 import tkinter as tk
 
+# Initialize an empty string to store the calculation
 calculation = ""
 
+# Function to add symbols to the calculation string
 def add_to_calculation(symbol):
     global calculation
     calculation += str(symbol)
-    text_result.delete(1.0, "end")
-    text_result.insert(1.0, calculation)
+    text_result.delete(1.0, "end") # Clear the text field
+    text_result.insert(1.0, calculation) # Insert the updated calculation string
 
+# Function to evaluate the calculation string
 def evaluate_calculation():
     global calculation
     try:
-        result = str(eval(calculation))
-        calculation = ""
-        text_result.delete(1.0, "end")
-        text_result.insert(1.0, result)
+        result = str(eval(calculation)) # Evaluate the calculation string
+        calculation = "" # Reset calculation string
+        text_result.delete(1.0, "end") # Clear the text field
+        text_result.insert(1.0, result) # Display the result
 
     except:
-        clear_field()
-        text_result.insert(1.0, "Error")
+        clear_field() # Call clear_field function if an error occurs
+        text_result.insert(1.0, "Error") # Display "Error" in case of an error
 
+# Function to clear the calculation string and text field
 def clear_field():
     global calculation
     calculation = ""
     text_result.delete(1.0, "end")
 
+# Create the main window
 root = tk.Tk()
 root.title("Calculator")
 root.geometry("300x275")
 
+# Create a text field to display the calculation
 text_result = tk.Text(root, height=2, width=16, font=("Arial", 24))
 text_result.grid(columnspan=5)
 
+# Create number buttons (1-9)
 btn_1 = tk.Button(root, text="1", command=lambda: add_to_calculation(1), width=5, font=("Arial", 14))
 btn_1.grid(row=2, column=1)
 btn_2 = tk.Button(root, text="2", command=lambda: add_to_calculation(2), width=5, font=("Arial", 14))
@@ -53,6 +60,8 @@ btn_9.grid(row=4, column=3)
 btn_0 = tk.Button(root, text="0", command=lambda: add_to_calculation(0), width=5, font=("Arial", 14))
 btn_0.grid(row=5, column=2)
 
+# Create operation buttons (+, -, *, /)
+# Similar to number buttons, but with appropriate symbols and commands
 btn_plus = tk.Button(root, text="+", command=lambda: add_to_calculation("+"), width=5, font=("Arial", 14))
 btn_plus.grid(row=2, column=4)
 btn_minus = tk.Button(root, text="-", command=lambda: add_to_calculation("-"), width=5, font=("Arial", 14))
@@ -61,14 +70,21 @@ btn_mul = tk.Button(root, text="*", command=lambda: add_to_calculation("*"), wid
 btn_mul.grid(row=4, column=4)
 btn_div = tk.Button(root, text="/", command=lambda: add_to_calculation("/"), width=5, font=("Arial", 14))
 btn_div.grid(row=5, column=4)
+
+# Create buttons for parentheses
+# Similar to number buttons, but with "(" and ")" symbols
 btn_open = tk.Button(root, text="(", command=lambda: add_to_calculation("("), width=5, font=("Arial", 14))
 btn_open.grid(row=5, column=1)
 btn_close = tk.Button(root, text=")", command=lambda: add_to_calculation(")"), width=5, font=("Arial", 14))
 btn_close.grid(row=5, column=3)
 
+# Create clear button
 btn_clear = tk.Button(root, text="C", command=clear_field, width=11, font=("Arial", 14))
 btn_clear.grid(row=6, column=1, columnspan=2)
+
+# Create equals button
 btn_equals = tk.Button(root, text="=", command=evaluate_calculation, width=11, font=("Arial", 14))
 btn_equals.grid(row=6, column=3, columnspan=2)
 
+# Start the tkinter event loop
 root.mainloop()
