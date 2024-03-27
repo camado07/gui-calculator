@@ -2,6 +2,9 @@
 
 This is a simple calculator application built using Tkinter in Python.
 
+## Screenshot
+![CalculatorScreenshot](https://github.com/camado07/gui-calculator/assets/115590880/f14aecbc-06e2-4c62-b506-d1550ff10b01)
+
 ## Usage
 
 1. Run the script.
